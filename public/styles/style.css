@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: hsl(223, 19%, 93%);
+}
+
+#main {
+  width: 50vw;
+  height: 80vh;
+  padding: 40px 0;
+}
+
+#idCard {
+  width: 672px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: hsl(0, 0%, 100%);
+}
+
+#divButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 50%;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: hsl(223, 19%, 93%);
+}
+#divButtons button {
+  cursor: pointer;
+  border: none;
+  color: hsl(239, 57%, 85%);
+  background-color: transparent;
+}
+#divButtons button:hover {
+  color: hsl(238, 40%, 52%);
+}
+#divButtons #iteractionsValue {
+  padding: 12px 0;
+  color: hsl(238, 40%, 52%);
+}
+
+#divContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 5px;
+}
+
+#idHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#idHeader #imgUser {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+#idHeader #strongName {
+  margin-right: 15px;
+}
+#idHeader #date {
+  margin-right: 55%;
+}
+
+/*# sourceMappingURL=style.css.map */
