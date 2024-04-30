@@ -26,12 +26,36 @@ body{
     background-color: $Light-gray;
 }
 
-#main{
-    width: 50vw;
-    height: 80vh;
-    padding: 40px 0;
+form{
+    width: 672px;
+    padding: 20px;
+    border: 1px solid;
+
+    img{
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+
+    #coment{
+        width: 400px;
+        height: 100px;
+    }
+
+    #send{
+        padding: 17px 35px;
+    }
 }
-#idCard{
+
+#main{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 0;
+
+}
+.card{
     width: 672px;
     display: flex;
     flex-direction: row;
@@ -40,8 +64,10 @@ body{
     margin-bottom: 15px;
     background-color: $White;
 }
-
-#divButtons{
+.hover{
+    fill: red;
+}
+.buttons{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,24 +76,26 @@ body{
     padding: 5px;
     border-radius: 8px;
     background-color: $Light-gray;
+    color: $Light-grayish-blue;
+    
 
-    button{
+    img{
         cursor: pointer;
-        border: none;
-        color: $Light-grayish-blue;
-        background-color: transparent;
-    }
-    button:hover{
-        color: $Moderate-blue;
+        fill: $Moderate-blue;
+        
     }
 
-    #iteractionsValue{
+    .value{
         padding: 12px 0;
         color: $Moderate-blue;
     }
 }
 
-#divContent{
+.content{
+    //border: 1px solid red;
+}
+
+#value{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -75,25 +103,60 @@ body{
 }
 
 
-#idHeader{
+.header{
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-bottom: 20px;
 
-    #imgUser{
+    img{
         width: 30px;
         height: 30px;
         margin-right: 15px;
     }
 
-    #strongName{
+    strong{
         margin-right: 15px;
     }
 
-    #date{
-        margin-right: 55%;
+    .date{
+      //  margin-right: 55%;
     }
 
+    .divReply{
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row-reverse;
+        right: 0;
+
+        img{
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+        }
+    }
     
+}
+
+.cardResponse{
+    width: 600px;
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: hsl(0, 0%, 100%);
+    
+    .reply-container{
+        width: 572px;
+    
+    }
+}
+
+.line{
+    border-left: 1px solid red;
+    padding-left: 41px;
 }

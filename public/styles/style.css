@@ -14,13 +14,33 @@ body {
   background-color: hsl(223, 19%, 93%);
 }
 
+form {
+  width: 672px;
+  padding: 20px;
+  border: 1px solid;
+}
+form img {
+  width: 40px;
+  height: 40px;
+  margin-right: 15px;
+}
+form #coment {
+  width: 400px;
+  height: 100px;
+}
+form #send {
+  padding: 17px 35px;
+}
+
 #main {
-  width: 50vw;
-  height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
   padding: 40px 0;
 }
 
-#idCard {
+.card {
   width: 672px;
   display: flex;
   flex-direction: row;
@@ -30,7 +50,11 @@ body {
   background-color: hsl(0, 0%, 100%);
 }
 
-#divButtons {
+.hover {
+  fill: red;
+}
+
+.buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,44 +63,69 @@ body {
   padding: 5px;
   border-radius: 8px;
   background-color: hsl(223, 19%, 93%);
-}
-#divButtons button {
-  cursor: pointer;
-  border: none;
   color: hsl(239, 57%, 85%);
-  background-color: transparent;
 }
-#divButtons button:hover {
-  color: hsl(238, 40%, 52%);
+.buttons img {
+  cursor: pointer;
+  fill: hsl(238, 40%, 52%);
 }
-#divButtons #iteractionsValue {
+.buttons .value {
   padding: 12px 0;
   color: hsl(238, 40%, 52%);
 }
 
-#divContent {
+#value {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding-right: 5px;
 }
 
-#idHeader {
+.header {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
 }
-#idHeader #imgUser {
+.header img {
   width: 30px;
   height: 30px;
   margin-right: 15px;
 }
-#idHeader #strongName {
+.header strong {
   margin-right: 15px;
 }
-#idHeader #date {
-  margin-right: 55%;
+.header .divReply {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row-reverse;
+  right: 0;
+}
+.header .divReply img {
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+}
+
+.cardResponse {
+  width: 600px;
+  display: flex;
+  flex-direction: row-reverse;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: hsl(0, 0%, 100%);
+}
+.cardResponse .reply-container {
+  width: 572px;
+}
+
+.line {
+  border-left: 1px solid red;
+  padding-left: 41px;
 }
 
 /*# sourceMappingURL=style.css.map */

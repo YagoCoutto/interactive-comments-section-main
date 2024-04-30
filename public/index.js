@@ -1,4 +1,3 @@
-
 fetch('../data.json')
   .then((response) => {
     return response.json();
@@ -11,124 +10,116 @@ fetch('../data.json')
   });
 
 function processarDados(data) {
-  // Aqui você pode processar os dados obtidos do arquivo JSON
-  console.log(data["comments"][1].replies)
   data["comments"].forEach(element => {
     const username = element.user["username"];
     const image = element.user["image"];
     const content = element["content"];
-    
-    data["comments"][1].replies.forEach(element =>{
-      //criar uma função para chamar os replies
-    })
+    const replies = element["replies"];
+    const date = element["createdAt"];
+    const score = element["score"];
 
-    createElements(username, image, content)
+    createCards(username, image, content, date, score, replies);
   });
-
 }
 
-function createElements(username, image, content) {
-  const fragment = document.createDocumentFragment();
+function createCards(username, image, content, date, score, replies) {
   const main = document.getElementById('main');
 
   const card = document.createElement('div');
-  card.setAttribute('id', 'idCard');
-
-  function buttonIteractiveLeft() {
-    const fragment = document.createDocumentFragment();
-    const div = document.createElement('div');
-    div.setAttribute('id', 'divButtons')
-
-    const buttonPositive = document.createElement('button');
-    buttonPositive.append('+');
-    fragment.appendChild(buttonPositive);
-
-    const valueLikes = document.createElement('strong');
-    valueLikes.setAttribute('id', 'iteractionsValue')
-    valueLikes.append('20');
-    fragment.appendChild(valueLikes)
-
-    const buttonNegative = document.createElement('button');
-    buttonNegative.append('-');
-    fragment.appendChild(buttonNegative);
-
-    div.appendChild(fragment);
-    return div;
-  }
-
-  function divContent() {
-    const fragment = document.createDocumentFragment();
-
-    const div = document.createElement('div');
-    div.setAttribute('id', 'divContent');
-
-    /*Header */
-    const divHeader = function () {
-      const div = document.createElement('div');
-      div.setAttribute('id', 'idHeader')
+  card.setAttribute('class', 'card');
 
 
-      const imgUser = document.createElement('img');
-      imgUser.setAttribute('id', 'imgUser')
-      imgUser.src = image.png;
-      fragment.appendChild(imgUser)
+  const divButtons = buttonInteractiveLeft(score);
+  const divContent = createContent(username, image.png, content, date, score);
 
-      const strongUserName = document.createElement('strong');
-      strongUserName.setAttribute('id', 'strongName')
-      strongUserName.append(username);
-      fragment.appendChild(strongUserName);
+  card.appendChild(divButtons);
+  card.appendChild(divContent);
 
-      const dateUser = document.createElement('p');
-      dateUser.setAttribute('id', 'date')
-      dateUser.append('2 meses');
-      fragment.appendChild(dateUser);
-
-      const svgReply = document.createElement('img');
-
-      const strongReply = document.createElement('strong');
-      strongReply.append('Reply');
-
-      const divReply = document.createElement('div');
-      divReply.appendChild(svgReply);
-      divReply.appendChild(strongReply);
-      fragment.appendChild(divReply);
-
-
-      div.appendChild(fragment);
-      return div;
-    }
-
-    /*coments */
-    const divComents = function () {
-      const div = document.createElement('div');
-
-      const paragrapho = document.createElement("p");
-      paragrapho.append(content);
-      fragment.appendChild(paragrapho);
-
-      div.appendChild(fragment);
-      return div;
-    }
-
-    fragment.appendChild(divHeader())
-    fragment.appendChild(divComents())
-
-    div.appendChild(fragment)
-    return div;
-  }
-
-  fragment.appendChild(buttonIteractiveLeft());
-  fragment.appendChild(divContent());
-
-  card.appendChild(fragment);
   main.appendChild(card);
+
+  if (replies.length > 0) {
+    const line = document.createElement('div');
+    line.setAttribute('class', 'line')
+    replies.forEach(reply => {
+
+      const cardResponse = document.createElement('div');
+      cardResponse.setAttribute('class', 'cardResponse')
+
+      const replyContainer = document.createElement('div');
+      replyContainer.setAttribute('class', 'reply-container content');
+
+      const replyCard = createContent(reply.user.username, reply.user.image.png, reply.content, reply.createdAt);
+
+      replyContainer.appendChild(replyCard);
+      cardResponse.appendChild(replyContainer);
+      cardResponse.appendChild(buttonInteractiveLeft(reply.score))
+      line.appendChild(cardResponse)
+      main.appendChild(line)
+    });
+
+  }
+
 }
 
+function buttonInteractiveLeft(score) {
+  const div = document.createElement('div');
+  div.setAttribute('class', 'buttons');
 
-//CRUD Criar, ler, atualizar e excluir comentários e respostas
-//Comentários positivos e negativos
-//Veja o layout ideal para o aplicativo dependendo do tamanho da tela do dispositivo
-//Veja os estados de foco para todos os elementos interativos na página
-//Bônus : se você estiver construindo um projeto puramente front-end, use localStoragepara salvar o estado atual no navegador que persiste quando o navegador é atualizado
-//Bônus : construa este projeto como um aplicativo full-stack
+  const buttonPositive = document.createElement('img');
+  buttonPositive.setAttribute('class', 'button');
+  buttonPositive.setAttribute('src', '../images/icon-plus.svg');
 
+  const valueLikes = document.createElement('strong');
+  valueLikes.setAttribute('class', 'value');
+  valueLikes.textContent = score;
+
+  const buttonNegative = document.createElement('img');
+  buttonNegative.setAttribute('class', 'button');
+  buttonNegative.setAttribute('src', '../images/icon-minus.svg');
+
+
+  div.appendChild(buttonPositive);
+  div.appendChild(valueLikes);
+  div.appendChild(buttonNegative);
+
+  return div;
+}
+
+function createContent(username, imageUrl, content, date) {
+  const div = document.createElement('div');
+  div.setAttribute('class', 'content');
+
+  const header = document.createElement('div');
+  header.setAttribute('class', 'header');
+
+  const imgUser = document.createElement('img');
+  imgUser.setAttribute('src', imageUrl);
+
+  const strongUserName = document.createElement('strong');
+  strongUserName.textContent = username;
+
+  const dateUser = document.createElement('p');
+  dateUser.setAttribute('class', 'date')
+  dateUser.textContent = date;
+
+  const divReply = document.createElement('div');
+  divReply.setAttribute('class', 'divReply')
+  divReply.textContent = 'Reply';
+
+  const svgReply = document.createElement('img');
+  svgReply.setAttribute('src', '../images/icon-reply.svg')
+  divReply.appendChild(svgReply)
+
+  header.appendChild(imgUser);
+  header.appendChild(strongUserName);
+  header.appendChild(dateUser);
+  header.appendChild(divReply);
+
+  const paragraph = document.createElement('p');
+  paragraph.textContent = content;
+
+  div.appendChild(header);
+  div.appendChild(paragraph);
+
+  return div;
+}
